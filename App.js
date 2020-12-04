@@ -1,55 +1,30 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import * as GoogleSignIn from "expo-google-sign-in";
-import { Button } from "react-native";
+// Screens
+import LoginScreen from './screens/LoginScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import * as firebase from 'firebase';
 
-export default class AuthScreen extends React.Component {
-  state = { user: null };
+//React Navigation Setup
+import {  createAppContainer, createSwitchNavigator } from 'react-navigation';
 
-  componentDidMount() {
-    this.initAsync();
-  }
+const firebaseConfig = {
+  apiKey: 'AIzaSyBQ1M4vxJTywuLidAuJ7e6xryQ2QZnK0X8',
+  authDomain: 'quickstart-1586651695794.firebaseapp.com',
+  databaseURL: 'https://quickstart-1586651695794-default-rtdb.firebaseio.com',
+  projectId: 'quickstart-1586651695794',
+  storageBucket: 'quickstart-1586651695794.appspot.com',
+  messagingSenderId: '161357227708',
+  appId: '1:161357227708:web:287cab380cdf9c7a8152b9',
+  measurementId: 'G-KFMV1L3S56',
+};
 
-  initAsync = async () => {
-    await GoogleSignIn.initAsync({
-      // You may ommit the clientId when the firebase `googleServicesFile` is configured
-      clientId: "161357227708-51bimp6qhnktlpu71ntmb9cvv40mves5.apps.googleusercontent.com",
-    });
-    this._syncUserWithStateAsync();
-  };
+// if (!firebase.apps.length) {
+   firebase.initializeApp(firebaseConfig);
+// }
+const MainNavigator = createSwitchNavigator({
+  Login: { screen: LoginScreen },
+  Profile: { screen: ProfileScreen },
+});
 
-  _syncUserWithStateAsync = async () => {
-    const user = await GoogleSignIn.signInSilentlyAsync();
-    this.setState({ user });
-  };
+const App = createAppContainer(MainNavigator);
 
-  signOutAsync = async () => {
-    await GoogleSignIn.signOutAsync();
-    this.setState({ user: null });
-  };
-
-  signInAsync = async () => {
-    try {
-      await GoogleSignIn.askForPlayServicesAsync();
-      const { type, user } = await GoogleSignIn.signInAsync();
-      if (type === "success") {
-        this._syncUserWithStateAsync();
-      }
-    } catch ({ message }) {
-      alert("login: Error:" + message);
-    }
-  };
-
-  onPress = () => {
-    if (this.state.user) {
-      this.signOutAsync();
-    } else {
-      this.signInAsync();
-    }
-  };
-
-  render() {
-    return <Text onPress={this.onPress}>Toggle Auth</Text>;
-  }
-}
+export default App;

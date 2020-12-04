@@ -20,7 +20,7 @@
       "supportsTablet": true,
       "config": {
         "googleSignIn": {
-          "reservedClientId":"161357227708-cpvv0uvtd0lfdgsv996s84cgmql1e3fi.apps.googleusercontent.com"
+          "reservedClientId":"com.googleusercontent.apps.161357227708-bsnervueaobkrj0ffk1egodng4hmtoef"
         }
       },
       "bundleIdentifier":"com.test.test"
