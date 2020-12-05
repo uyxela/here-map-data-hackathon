@@ -8,6 +8,10 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 2737a17... package
 # macOS
 .DS_Store
 package-lock.json
