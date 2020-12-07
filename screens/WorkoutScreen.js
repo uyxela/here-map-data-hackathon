@@ -13,12 +13,24 @@ import MapView from "react-native-maps";
 
 export default function WorkoutScreen(props) {
   const [location, setLocation] = useState(null);
+  const [places, setPlaces] = useState([]);
+
+  const getPlaces = (position) => {
+    fetch(
+      `https://places.ls.hereapi.com/places/v1/autosuggest?at=${position.coords.latitude},${position.coords.longitude}&q=parks&apiKey=x3ryJ4bmBWLBuO8dfoopf1wT5MN5RhKKYFc_0fNWLfE`
+    ).then(response => response.json()).then(jsonResponse => {
+      fetch(jsonResponse.results[0].href).then(response => response.json()).then(jsonResponse => {
+        console.log(jsonResponse)
+      });
+    });
+  };
 
   useEffect(() => {
     console.log("fetching user data");
     navigator.geolocation.getCurrentPosition(
       (position) => {
         setLocation(position);
+        return position;
       },
       (error) => Alert.alert(error.message),
       {
@@ -28,108 +40,117 @@ export default function WorkoutScreen(props) {
       }
     );
   }, []);
-  return (
-    <View style={styles.container}>
-      <Text style={styles.titleText}> Places Nearby </Text>
-      <View style={styles.mapView}>
-        {location ? (
-          <MapView
-            style={styles.mapStyle}
-            initialRegion={{
-              latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
-              latitudeDelta: 0.1,
-              longitudeDelta: 0.1,
-            }}
-            showsUserLocation={true}
-            userLocationAnnotationTitle={"Current Location"}
-            showsMyLocationButton={true}
-            loadingEnabled={true}
-            showsPointsOfInterest={true}
-            showsMyLocationButton={true}
-          ></MapView>
-        ) : null}
-      </View>
-      <View style={{
-        width: "100%",
-        flexDirection: "column",
-        justifyContent: "flex-start"
-      }}>
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate("Place")}
-          style={{ width: "100%", height: "22%", marginBottom: 20 }}
+  if (location) {
+    getPlaces(location);
+    return (
+      <View style={styles.container}>
+        <Text style={styles.titleText}> Places Nearby </Text>
+        <View style={styles.mapView}>
+          {location ? (
+            <MapView
+              style={styles.mapStyle}
+              initialRegion={{
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude,
+                latitudeDelta: 0.1,
+                longitudeDelta: 0.1,
+              }}
+              showsUserLocation={true}
+              userLocationAnnotationTitle={"Current Location"}
+              showsMyLocationButton={true}
+              loadingEnabled={true}
+              showsPointsOfInterest={true}
+              showsMyLocationButton={true}
+            ></MapView>
+          ) : null}
+        </View>
+        <View
+          style={{
+            width: "100%",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+          }}
         >
-          <View style={styles.placeList}>
-            <View
-              style={{
-                flex: 0.4,
-                alignItems: "left",
-                justifyContent: "center",
-              }}
-            >
-              <Text style={{ fontSize: 16, color: "white" }}>Place Name</Text>
-            </View>
-            <View
-              style={{
-                flex: 0.4,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Text style={{ fontSize: 16, color: "white" }}>0.7 mi</Text>
-            </View>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate("Place")}
+            style={{ width: "100%", height: "22%", marginBottom: 20 }}
+          >
+            <View style={styles.placeList}>
+              <View
+                style={{
+                  flex: 0.4,
+                  alignItems: "left",
+                  justifyContent: "center",
+                }}
+              >
+                <Text style={{ fontSize: 16, color: "white" }}>Place Name</Text>
+              </View>
+              <View
+                style={{
+                  flex: 0.4,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Text style={{ fontSize: 16, color: "white" }}>0.7 mi</Text>
+              </View>
 
-            <View
-              style={{
-                flex: 0.1,
-                alignItems: "flex-end",
-                justifyContent: "center",
-                marginRight: -35,
-              }}
-            >
-              <AntDesign name="arrowright" size={24} color="white" />
+              <View
+                style={{
+                  flex: 0.1,
+                  alignItems: "flex-end",
+                  justifyContent: "center",
+                  marginRight: -35,
+                }}
+              >
+                <AntDesign name="arrowright" size={24} color="white" />
+              </View>
             </View>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate("Place")}
-          style={{ width: "100%", height: "22%", marginBottom: 20 }}
-        >
-          <View style={styles.placeList}>
-            <View
-              style={{
-                flex: 0.4,
-                alignItems: "left",
-                justifyContent: "center",
-              }}
-            >
-              <Text style={{ fontSize: 16, color: "white" }}>Place Name</Text>
-            </View>
-            <View
-              style={{
-                flex: 0.4,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Text style={{ fontSize: 16, color: "white" }}>0.7 mi</Text>
-            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate("Place")}
+            style={{ width: "100%", height: "22%", marginBottom: 20 }}
+          >
+            <View style={styles.placeList}>
+              <View
+                style={{
+                  flex: 0.4,
+                  alignItems: "left",
+                  justifyContent: "center",
+                }}
+              >
+                <Text style={{ fontSize: 16, color: "white" }}>Place Name</Text>
+              </View>
+              <View
+                style={{
+                  flex: 0.4,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Text style={{ fontSize: 16, color: "white" }}>0.7 mi</Text>
+              </View>
 
-            <View
-              style={{
-                flex: 0.1,
-                alignItems: "flex-end",
-                justifyContent: "center",
-                marginRight: -35,
-              }}
-            >
-              <AntDesign name="arrowright" size={24} color="white" />
+              <View
+                style={{
+                  flex: 0.1,
+                  alignItems: "flex-end",
+                  justifyContent: "center",
+                  marginRight: -35,
+                }}
+              >
+                <AntDesign name="arrowright" size={24} color="white" />
+              </View>
             </View>
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-  );
+    );
+  } else {
+    return <View>
+      <Text>Loading</Text>
+    </View>;
+  }
 }
 
 const styles = StyleSheet.create({
@@ -226,6 +247,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingLeft: 10,
     paddingRight: 10,
-    margin: 20
+    margin: 20,
   },
 });
