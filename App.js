@@ -3,7 +3,7 @@ import LoginScreen from "./screens/LoginScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import * as firebase from "firebase";
 import {TabScreen} from "./screens/TabScreen";
-
+import PlaceScreen from "./screens/PlaceScreen"
 //React Navigation Setup
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import firebaseConfig from './firebaseConfig.json';
@@ -17,6 +17,7 @@ const MainNavigator = createSwitchNavigator(
   {
     Login: { screen: LoginScreen },
     App: { screen: AppStack },
+    Place: {screen: PlaceScreen}
   },
 );
 
