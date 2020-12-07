@@ -6,11 +6,9 @@ import {
   Text,
   View,
   StyleSheet,
-  Button,
-  Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import * as firebase from "firebase";
 import MapView from "react-native-maps";
 
