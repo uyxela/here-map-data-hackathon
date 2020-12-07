@@ -45,28 +45,6 @@ export const TabScreen = createBottomTabNavigator(
           ),
         },
       },
-    // Settings: {
-    //     screen: ProfileScreen,
-    //     navigationOptions: {
-    //         tabBarLabel: 'Settings',
-    //         tabBarIcon: ({ tintColor }) => (
-    //             <Ionicons name="ios-settings" color={tintColor} size={25} />
-    //         )
-    //     }
-    // },
-    // Signout: {
-    //     screen: ProfileScreen,
-    //     navigationOptions: {
-    //         tabBarLabel: 'Signout',
-    //         tabBarIcon: ({ tintColor }) => (
-    //             <SimpleLineIcons name="logout" color={tintColor} size={20} />
-    //         ),
-    //         tabBarOnPress: async ({navigation}) => {
-    //             // await AsyncStorage.clear();
-    //             navigation.navigate('Auth');
-    //         }
-    //     }
-    // }
   },
   {
     tabBarOptions: {
