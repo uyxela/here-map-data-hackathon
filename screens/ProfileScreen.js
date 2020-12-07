@@ -31,7 +31,7 @@ export default function ProfileScreen(props) {
           }}
         />
         <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-          Welcome, {userInfo["firstName"]}
+          {userInfo["firstName"]} {userInfo["lastName"]}
         </Text>
         <Text style={{ fontSize: 15, marginTop: 10 }}>{userInfo["email"]}</Text>
         <Button
