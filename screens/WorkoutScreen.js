@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Button,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-} from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import MapView from "react-native-maps";
 
@@ -50,11 +42,13 @@ export default function WorkoutScreen(props) {
           ></MapView>
         ) : null}
       </View>
-      <View style={{
-        width: "100%",
-        flexDirection: "column",
-        justifyContent: "flex-start"
-      }}>
+      <View
+        style={{
+          width: "100%",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+        }}
+      >
         <TouchableOpacity
           onPress={() => props.navigation.navigate("Place")}
           style={{ width: "100%", height: "22%", marginBottom: 20 }}
@@ -226,6 +220,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingLeft: 10,
     paddingRight: 10,
-    margin: 20
+    margin: 20,
   },
 });
