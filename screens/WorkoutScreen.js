@@ -50,79 +50,84 @@ export default function WorkoutScreen(props) {
           ></MapView>
         ) : null}
       </View>
-      <TouchableOpacity
-        onPress={() => props.navigation.navigate("Place")}
-        style={{width:"100%",height:"50%"}}
-      >
-        <View style={styles.placeList}>
-          <View
-            style={{
-              flex: 0.4,
-              alignItems: "left",
-              justifyContent: "center",
-            }}
-          >
-            <Text style={{ fontSize: 16, color: "white" }}>Place Name</Text>
-          </View>
-          <View
-            style={{
-              flex: 0.4,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Text style={{ fontSize: 16, color: "white" }}>0.7 mi</Text>
-          </View>
+      <View style={{
+        width: "100%",
+        flexDirection: "column",
+        justifyContent: "flex-start"
+      }}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate("Place")}
+          style={{ width: "100%", height: "22%", marginBottom: 20 }}
+        >
+          <View style={styles.placeList}>
+            <View
+              style={{
+                flex: 0.4,
+                alignItems: "left",
+                justifyContent: "center",
+              }}
+            >
+              <Text style={{ fontSize: 16, color: "white" }}>Place Name</Text>
+            </View>
+            <View
+              style={{
+                flex: 0.4,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Text style={{ fontSize: 16, color: "white" }}>0.7 mi</Text>
+            </View>
 
-          <View
-            style={{
-              flex: 0.1,
-              alignItems: "flex-end",
-              justifyContent: "center",
-              marginRight:-35
-            }}
-          >
-            <AntDesign name="arrowright" size={24} color="white" />
+            <View
+              style={{
+                flex: 0.1,
+                alignItems: "flex-end",
+                justifyContent: "center",
+                marginRight: -35,
+              }}
+            >
+              <AntDesign name="arrowright" size={24} color="white" />
+            </View>
           </View>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => props.navigation.navigate("Place")}
-        style={{width:"100%",height:"50%"}}
-      >
-        <View style={styles.placeList}>
-          <View
-            style={{
-              flex: 0.4,
-              alignItems: "left",
-              justifyContent: "center",
-            }}
-          >
-            <Text style={{ fontSize: 16, color: "white" }}>Place Name</Text>
-          </View>
-          <View
-            style={{
-              flex: 0.4,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Text style={{ fontSize: 16, color: "white" }}>0.7 mi</Text>
-          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate("Place")}
+          style={{ width: "100%", height: "22%", marginBottom: 20 }}
+        >
+          <View style={styles.placeList}>
+            <View
+              style={{
+                flex: 0.4,
+                alignItems: "left",
+                justifyContent: "center",
+              }}
+            >
+              <Text style={{ fontSize: 16, color: "white" }}>Place Name</Text>
+            </View>
+            <View
+              style={{
+                flex: 0.4,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Text style={{ fontSize: 16, color: "white" }}>0.7 mi</Text>
+            </View>
 
-          <View
-            style={{
-              flex: 0.1,
-              alignItems: "flex-end",
-              justifyContent: "center",
-              marginRight:-35
-            }}
-          >
-            <AntDesign name="arrowright" size={24} color="white" />
+            <View
+              style={{
+                flex: 0.1,
+                alignItems: "flex-end",
+                justifyContent: "center",
+                marginRight: -35,
+              }}
+            >
+              <AntDesign name="arrowright" size={24} color="white" />
+            </View>
           </View>
-        </View>
-      </TouchableOpacity>
-  
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -133,7 +138,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     paddingTop: 70,
-    flexDirection:"column"
+    flexDirection: "column",
     // justifyContent: "center",
   },
   mapStyle: {
@@ -215,13 +220,12 @@ const styles = StyleSheet.create({
   },
   placeList: {
     flexDirection: "row",
-    height: "10%",
+    height: "100%",
     backgroundColor: "#3d3d3d",
     marginTop: 10,
     borderRadius: 10,
     paddingLeft: 10,
     paddingRight: 10,
-    margin: 20,
-    flex:0.2
+    margin: 20
   },
 });
