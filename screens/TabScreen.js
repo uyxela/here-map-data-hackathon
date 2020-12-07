@@ -48,7 +48,7 @@ export const TabScreen = createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      activeTintColor: "red",
+      activeTintColor: "green",
       inactiveTintColor: "grey",
       showIcon: true,
     },
