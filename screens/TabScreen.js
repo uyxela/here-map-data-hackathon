@@ -5,7 +5,8 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import ProfileScreen from "./ProfileScreen";
 import DashboardScreen from "./DashboardScreen";
-import WorkoutScreen from "./WorkoutScreen";
+import LogScreen from "./LogScreen";
+
 
 const style = StyleSheet.create({
   container: {
@@ -28,9 +29,9 @@ export const TabScreen = createBottomTabNavigator(
       },
     },
     Workout: {
-        screen: WorkoutScreen,
+        screen: LogScreen,
         navigationOptions: {
-          tabBarLabel: "Workout",
+          tabBarLabel: "Workouts",
           tabBarIcon: ({ tintColor }) => (
             <Ionicons name="ios-body" color={tintColor} size={25} />
           ),
