@@ -10,20 +10,55 @@ import {
 import * as firebase from "firebase";
 import MapView from "react-native-maps";
 import { Ionicons } from "@expo/vector-icons";
+import AsyncStorage from '@react-native-community/async-storage'
 
 export default function WorkoutScreen(props) {
   const [location, setLocation] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
   const createTwoButtonAlert = () =>
     Alert.alert(
       "Workout Saved!",
       "Boof some meth as a reward :)",
       [
-        { text: "OK", onPress: () => console.log("OK Pressed") }
+        {
+          text: "OK",
+          onPress: () => {
+            console.log(userInfo)
+            var ref = firebase.database().ref("users/");
+            ref.once("value").then(function (snapshot) {
+              var id = "id" + Math.random().toString(16).slice(2);
+              firebase
+                .database()
+                .ref("users/" + userInfo['id'] + "/workouts/" + id)
+                .set({
+                  workoutId: id,
+                  length: 2.4,
+                  date: "Dec 7, 2020",
+                  steps: 3500,
+                  duration: 1.4,
+                  placeName: "Greenwoods Trail"
+                });
+
+            });
+          },
+        },
       ],
       { cancelable: false }
     );
   useEffect(() => {
     console.log("fetching user data");
+    var ref = firebase.database().ref("users/");
+    ref.once("value").then(function (snapshot) {
+      var tempuserInfo = snapshot.child(props.navigation.getParam("id")).val();
+
+      if (tempuserInfo) {
+        setUserInfo(tempuserInfo);
+      } else {
+        AsyncStorage.getItem("userId").then((id) =>
+          setUserInfo(snapshot.child(id).val())
+        );
+      }
+    });
     navigator.geolocation.getCurrentPosition(
       (position) => {
         setLocation(position);
@@ -107,6 +142,7 @@ export default function WorkoutScreen(props) {
         <TouchableOpacity
           onPress={createTwoButtonAlert}
           style={styles.buttonContainer}
+          disabled={!userInfo}
         >
           <View style={{ alignContent: "left" }}>
             <Text style={styles.buttonText}>Record Workout</Text>
