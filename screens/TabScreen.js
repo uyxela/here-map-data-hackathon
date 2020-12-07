@@ -21,9 +21,9 @@ export const TabScreen = createBottomTabNavigator(
     Dashboard: {
       screen: DashboardScreen,
       navigationOptions: {
-        tabBarLabel: "Dashboard",
+        tabBarLabel: "Home",
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="ios-settings" color={tintColor} size={25} />
+          <Ionicons name="ios-home" color={tintColor} size={25} />
         ),
       },
     },
@@ -32,7 +32,7 @@ export const TabScreen = createBottomTabNavigator(
         navigationOptions: {
           tabBarLabel: "Workout",
           tabBarIcon: ({ tintColor }) => (
-            <Ionicons name="ios-home" color={tintColor} size={25} />
+            <Ionicons name="ios-body" color={tintColor} size={25} />
           ),
         },
       },
@@ -41,7 +41,7 @@ export const TabScreen = createBottomTabNavigator(
         navigationOptions: {
           tabBarLabel: "Profile",
           tabBarIcon: ({ tintColor }) => (
-            <Ionicons name="ios-home" color={tintColor} size={25} />
+            <Ionicons name="ios-person" color={tintColor} size={25} />
           ),
         },
       },
