@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import ProfileScreen from "./ProfileScreen";
 import DashboardScreen from "./DashboardScreen";
+import WorkoutScreen from "./WorkoutScreen";
 
 const style = StyleSheet.create({
   container: {
@@ -16,15 +17,7 @@ const style = StyleSheet.create({
 
 export const TabScreen = createBottomTabNavigator(
   {
-    Profile: {
-      screen: ProfileScreen,
-      navigationOptions: {
-        tabBarLabel: "Profile",
-        tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="ios-home" color={tintColor} size={25} />
-        ),
-      },
-    },
+   
     Dashboard: {
       screen: DashboardScreen,
       navigationOptions: {
@@ -34,6 +27,24 @@ export const TabScreen = createBottomTabNavigator(
         ),
       },
     },
+    Workout: {
+        screen: WorkoutScreen,
+        navigationOptions: {
+          tabBarLabel: "Workout",
+          tabBarIcon: ({ tintColor }) => (
+            <Ionicons name="ios-home" color={tintColor} size={25} />
+          ),
+        },
+      },
+    Profile: {
+        screen: ProfileScreen,
+        navigationOptions: {
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ tintColor }) => (
+            <Ionicons name="ios-home" color={tintColor} size={25} />
+          ),
+        },
+      },
     // Settings: {
     //     screen: ProfileScreen,
     //     navigationOptions: {
