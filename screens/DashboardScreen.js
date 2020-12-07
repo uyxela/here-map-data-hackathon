@@ -7,12 +7,8 @@ export default function DashboardScreen(props) {
       <View style={styles.container}>
         <Text> Dashboard Screen </Text>
         <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-          Welcome, {props.navigation.getParam("username")}
+          Welcome, to dashboard u crip
         </Text>
-        <Button
-          title="Sign out"
-          onPress={() => props.navigation.navigate("Login")}
-        />
       </View>
     );
   
