@@ -9,16 +9,15 @@ import {
 } from "react-native";
 import * as firebase from "firebase";
 import MapView from "react-native-maps";
-import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from '@react-native-community/async-storage'
 
-export default function WorkoutScreen(props) {
+export default function PlaceScreen(props) {
   const [location, setLocation] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
   const createTwoButtonAlert = () =>
     Alert.alert(
       "Workout Saved!",
-      "Boof some meth as a reward :)",
+      "Have an apple as a reward :)",
       [
         {
           text: "OK",
@@ -77,7 +76,7 @@ export default function WorkoutScreen(props) {
 
       <Button
         title="Back"
-        onPress={() => props.navigation.navigate("Workout")}
+        onPress={() => props.navigation.navigate("Places")}
       />
       <View
         style={{

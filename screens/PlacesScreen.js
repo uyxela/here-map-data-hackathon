@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity,Button } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import MapView from "react-native-maps";
 
-export default function WorkoutScreen(props) {
+export default function PlacesScreen(props) {
   const [location, setLocation] = useState(null);
 
   useEffect(() => {
@@ -23,6 +23,10 @@ export default function WorkoutScreen(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}> Places Nearby </Text>
+      <Button
+        title="Back"
+        onPress={() => props.navigation.navigate("Dashboard")}
+      />
       <View style={styles.mapView}>
         {location ? (
           <MapView

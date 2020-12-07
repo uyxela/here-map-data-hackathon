@@ -68,7 +68,7 @@ export default function DashboardScreen(props) {
               showsMyLocationButton={true}
             >
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("Workout")}
+                onPress={() => props.navigation.navigate("Places")}
                 style={styles.buttonContainer}
               >
                 <View style={{ alignContent: "left" }}>
