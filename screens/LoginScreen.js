@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import * as Google from "expo-google-app-auth";
 import * as firebase from "firebase";
-import AsyncStorage from '@react-native-community/async-storage'
+import AsyncStorage from "@react-native-community/async-storage";
 
 const IOS_CLIENT_ID =
   "161357227708-bsnervueaobkrj0ffk1egodng4hmtoef.apps.googleusercontent.com";
@@ -25,32 +25,31 @@ export default function LoginScreen(props) {
           if (snapshot.child(result.user.id).exists()) {
             props.navigation.navigate("Profile", {
               id: result.user.id,
-            }); 
-            AsyncStorage.setItem('userId',result.user.id);
-          }
-          else{
-            firebase
-            .database()
-            .ref("users/" + result.user.id)
-            .set({
-              email: result.user.email,
-              firstName: result.user.givenName,
-              lastName: result.user.familyName,
-              id: result.user.id,
-              photoUrl: result.user.photoUrl,
-              gender: null,
-              age: null,
-              height: null,
-              weight: null,
             });
+            AsyncStorage.setItem("userId", result.user.id);
+          } else {
+            firebase
+              .database()
+              .ref("users/" + result.user.id)
+              .set({
+                email: result.user.email,
+                firstName: result.user.givenName,
+                lastName: result.user.familyName,
+                id: result.user.id,
+                photoUrl: result.user.photoUrl,
+                gender: null,
+                age: null,
+                height: null,
+                weight: null,
+              });
             props.navigation.navigate("Profile", {
               id: result.user.id,
-            }); 
-            AsyncStorage.setItem('userId',result.user.id);
+            });
+            AsyncStorage.setItem("userId", result.user.id);
           }
+          
         });
 
-        
         return result.accessToken;
       } else {
         return { cancelled: true };
