@@ -1,17 +1,14 @@
 import React from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
-import * as firebase from 'firebase';
+import { Text, View, StyleSheet, Button, Dimensions  } from "react-native";
+import * as firebase from "firebase";
+import MapView from "react-native-maps";
 
 export default function DashboardScreen(props) {
-    return (
-      <View style={styles.container}>
-        <Text> Dashboard Screen </Text>
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-          Welcome, to dashboard u crip
-        </Text>
-      </View>
-    );
-  
+  return (
+    <View style={styles.container}>
+      <MapView style={styles.mapStyle} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -19,6 +16,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
+  mapStyle: {
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
+  },
 });
