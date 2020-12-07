@@ -1,12 +1,33 @@
-import React from "react";
-import { Text, View, StyleSheet, Button, Dimensions  } from "react-native";
+import React, { useState } from "react";
+import { Alert, Text, View, StyleSheet, Button, Dimensions  } from "react-native";
 import * as firebase from "firebase";
 import MapView from "react-native-maps";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function DashboardScreen(props) {
+
+  const [location, setLocation] = useState("")
+
+  const findCoordinates = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      const loc = JSON.stringify(position);
+      setLocation(loc);
+    }, error => Alert.alert(error.message), { 
+      enableHighAccuracy: true, 
+      timeout: 20000, 
+      maximumAge: 1000 
+    });
+  }
+
   return (
     <View style={styles.container}>
-      <MapView style={styles.mapStyle} />
+      <TouchableOpacity onPress={findCoordinates}>
+        <Text>Location: {location}</Text>
+      </TouchableOpacity>
+      
+      <MapView style={styles.mapStyle}>
+
+      </MapView>
     </View>
   );
 }
@@ -19,7 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   mapStyle: {
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
+    //width: Dimensions.get("window").width,
+    //height: Dimensions.get("window").height,
   },
 });
